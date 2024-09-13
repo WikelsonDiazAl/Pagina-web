@@ -1,0 +1,33 @@
+@page "/Multiplicador"
+@rendermode InteractiveServer
+
+<PageTitle>Multiplicador</PageTitle>
+
+<h1 class="text-center text-primary">Multiplicador</h1>
+
+<p class="text-center">Multiplicación del 1 hasta el 15</p>
+
+<div class="mb-4">
+    <label for="numero" class="form-label">Ingresa un número:</label>
+    <input type="number" @bind="numero" class="form-control" />
+</div>
+
+<h4 class="text-success text-center">Resultados:</h4>
+
+@if(numero > 0)
+{
+    <div class="card p-3 mt-4 shadow-sm bg-light">
+        @for(int i = 1; i <= 15; i++)
+        {
+            <div class="fs-5 text-center mb-2 text-secondary">
+                <strong>@numero</strong> x <strong>@i</strong> = <strong>@(i * numero)</strong>
+            </div>
+        }
+    </div>
+}
+
+@code {
+    int numero = 0;
+}
+
+

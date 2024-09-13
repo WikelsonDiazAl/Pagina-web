@@ -1,0 +1,59 @@
+@page "/Calculadora"
+@rendermode InteractiveServer
+
+<PageTitle>Calculadora</PageTitle>
+
+<div class="container d-flex justify-content-center mt-5">
+    <div class="card shadow-sm p-3 w-75">
+        <h1 class="text-center text-primary mb-3 fs-4">Calculadora</h1>
+
+        <p class="text-center mb-4">Calculadora funcional para realizar las 4 operaciones básicas</p>
+
+        <div class="mb-3">
+            <label for="n1" class="form-label">Número 1:</label>
+            <input type="number" @bind="n1" class="form-control" id="n1" placeholder="Ingresa el primer número" />
+        </div>
+
+        <div class="mb-3">
+            <label for="n2" class="form-label">Número 2:</label>
+            <input type="number" @bind="n2" class="form-control" id="n2" placeholder="Ingresa el segundo número" />
+        </div>
+
+        <div class="d-grid gap-2 mb-4">
+            <button class="btn btn-success btn-sm" @onclick="Sumar">Sumar</button>
+            <button class="btn btn-warning btn-sm text-white" @onclick="Restar">Restar</button>
+            <button class="btn btn-info btn-sm text-white" @onclick="Multiplicar">Multiplicar</button>
+            <button class="btn btn-danger btn-sm" @onclick="Dividir">Dividir</button>
+        </div>
+
+        <h4 class="text-center text-dark p-2 bg-light border rounded">
+            Resultado: <span class="text-primary">@Resultado</span>
+        </h4>
+    </div>
+</div>
+
+@code {
+    double n1 = 0;
+    double n2 = 0;
+    double Resultado = 0;
+
+    void Sumar()
+    {
+        Resultado = n1 + n2;
+    }
+
+    void Restar()
+    {
+        Resultado = n1 - n2;
+    }
+
+    void Multiplicar()
+    {
+        Resultado = n1 * n2;
+    }
+
+    void Dividir()
+    {
+        Resultado = n1 / n2;
+    }
+}

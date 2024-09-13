@@ -1,0 +1,61 @@
+@page "/aprende_mas"
+@rendermode InteractiveServer
+
+<PageTitle> Aprende Más</PageTitle>
+
+<h1> Aprende Más</h1>
+
+@if (mostrarVideo)
+{
+    <div class="video-container">
+        <iframe width="695" height="391" src="@urlVideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+}
+
+<div class="row">
+
+@foreach (var video in videos)
+{
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img @onclick="() => verVideo(video)" src="https://i.ytimg.com/vi/@video.Url/hqdefault.jpg" class="card-img-top imagen-estiloo" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@video.Titulo</h5>
+                <p class="card-text">@video.Descripcion</p>
+                <div class="button-group">
+                    <a href="https://www.youtube.com/watch?v=@video.Url" target="_blank" class="btn btn-primary">Ir a Youtube</a>
+                    <button @onclick="() => verVideo(video)" class="btn btn-secondary">Ver en esta página</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+</div>
+
+@code {
+    bool mostrarVideo = false;
+    string urlVideo = "";
+
+    class Video
+    {
+        public string Titulo { get; set; }
+        public string Url { get; set; }
+        public string Descripcion { get; set; }
+    }
+
+    void verVideo(Video video)
+    {
+        mostrarVideo = true;
+        urlVideo = "https://www.youtube.com/embed/" + video.Url;
+    }
+
+    List<Video> videos = new List<Video>
+    {
+new Video { Titulo = "Introducción a Blazor - Qué es Blazor y cómo funciona", Descripcion = "El video presenta Blazor, un framework que permite desarrollar aplicaciones web interactivas usando C# tanto en el servidor como en el navegador, gracias a WebAssembly. Explica las diferencias entre los modelos de Blazor Server y WebAssembly. \n Me gusta cómo Blazor facilita la reutilización de código y ofrece opciones tanto para servidores como para navegadores.", Url = "hwzzpOq0MIg" },
+        new Video { Titulo = "Introducción a Blazor con C#. Descubre qué es Blazor y por qué es tan importante", Descripcion= "El vídeo presenta Blazor, una tecnología de Microsoft que permite desarrollar aplicaciones web usando C# en lugar de JavaScript. Explica su importancia y cómo se integra con el ecosistema .NET. Me gusta la forma en que Blazor facilita el desarrollo web al permitir el uso de C# en el frontend, unificando el stack tecnológico. También valoro cómo refuerza el ecosistema .NET al ofrecer una alternativa robusta a JavaScript.",Url = "AVqBf_2GXrA" },
+        new Video { Titulo = "Blazor contra Angular, Vue.js y React",Descripcion="El video trata sobre las ventajas de Blazor, permitiendo a los desarrolladores .NET usar C# en lugar de JavaScript para el frontend. También menciona cómo simplifica el desarrollo con herramientas familiares para quienes usan .NET. Me gusta que Blazor elimine la necesidad de usar JavaScript, facilitando el desarrollo full stack con una sola tecnología. Además, ahorra tiempo y esfuerzo al trabajar en un entorno conocido.", Url = "1HNrYmubNF4" },
+        new Video { Titulo = "Rendimiento de Blazor en aplicaciones reales",Descripcion="El video explica el rendimiento de Blazor comparado con otras tecnologías y su capacidad de escalabilidad. También menciona que Blazor puede manejar millas de usuarios concurrentes. Me gusta que Blazor ofrezca buen rendimiento y que sea escalable sin complicaciones. Además, su bajo costo de operación lo hace atractivo para grandes proyectos.", Url = "jfxnxvJTGkg" },
+        new Video { Titulo = "¿QUÉ ES BLAZOR? ¿EL NUEVO JAVASCRIPT DE MICROSOFT?",Descripcion="El vídeo presenta Blazor como una alternativa a JavaScript para crear interfaces web del lado del cliente utilizando C#. Destaca las ventajas de Blazor, como su integración con .NET y la eliminación de JavaScript. Me gusta cómo Blazor permite trabajar con C# en el frontend, ofreciendo una experiencia unificada para desarrolladores .NET. La integración con Visual Studio y la simplificación del proceso de compilación son grandes ventajas.", Url = "piNHZAMxVuk" }
+    };
+}
